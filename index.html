@@ -40,11 +40,11 @@
             }
         </script>
         <script>
-            var xhr, myTimer;        
+            var xhr, myTimer;
 
             var sendpk7 = function(event) {
                 animatePk7();
-                myTimer = setInterval(function(){ 
+                myTimer = setInterval(function(){
                     deAnimatePk7();
                     clearInterval(myTimer);
                     document.getElementById("pksmInput").type = "file";
@@ -56,7 +56,7 @@
                 reader.onload = function(){
                     var pokeIpAddr = document.getElementById("3dsIp").value;
                     //check if file != 232 bytes and if 3ds ip is set
-                    if(input.files[0].size == 232 && pokeIpAddr != ""){
+                    if( (input.files[0].size == 232 || input.files[0].size == 264) && pokeIpAddr != ""){
                         document.getElementById("pksmInput").type = "hidden";
                         document.getElementById("info").innerHTML = "";
                         var j = 0,
