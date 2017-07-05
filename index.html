@@ -57,17 +57,18 @@
                     var pokeIpAddr = document.getElementById("3dsIp").value;
                     //check if file != 232 bytes and if 3ds ip is set
                     if( (input.files[0].size == 232 || input.files[0].size == 264) && pokeIpAddr != ""){
+			var payloadSize = input.files[0].size+7;
                         document.getElementById("pksmInput").type = "hidden";
                         document.getElementById("info").innerHTML = "";
                         var j = 0,
                             pksm = [0x50, 0x4B, 0x53, 0x4D, 0x4F, 0x54, 0x41],
                             pk7 = new Uint8Array(reader.result),
-                            pkx = new Uint8Array(239);
+                            pkx = new Uint8Array(payloadSize);
                         for (var i = 0; i<7; i++){
                             pkx[i] = pksm[i];
                         }
 
-                        for(var i = 7; i<239; i++){
+                        for(var i = 7; i<payloadSize; i++){
                             pkx[i] = pk7[j];
                             j++;
                         }
